@@ -1,3 +1,4 @@
+<?php include 'header.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,22 +15,25 @@
                     <legend>Thêm mới sản phẩm</legend>
                     <div class="mb-3">
                         <label class="form-label">Tên sản phẩm</label>
-                        <input type="text" id="TextInput" class="form-control" placeholder="Tên sản phẩm">
+                        <input type="text" name="ten" class="form-control" placeholder="Tên sản phẩm">
                     </div>
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Hình ảnh</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label class="form-label">Mô tả sản phẩm</label>
+                        <input type="text" name="mo_ta" class="form-control" placeholder="Giá sản phẩm">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Giá sản phẩm</label>
-                        <input type="number" id="TextInput" class="form-control" placeholder="Giá sản phẩm">
+                        <input type="number" name="gia" class="form-control" placeholder="Số lượng sản phẩm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Hình ảnh</label>
+                        <input class="form-control" name="anh" type="file" id="formFile">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Số lượng sản phẩm</label>
-                        <input type="number" id="TextInput" class="form-control" placeholder="Số lượng sản phẩm">
+                        <input type="number" name="gia" class="form-control" placeholder="Số lượng sản phẩm">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary">Danh sách</button>
             </form>
     </div>
 </body>

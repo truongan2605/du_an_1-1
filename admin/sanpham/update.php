@@ -1,3 +1,4 @@
+<?php include 'header.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,26 +11,29 @@
 
 <body>
     <div class="container w-50 mt-4">
-            <form action="index.php?act=update.php" method="post" enctype="multipart/form-data">
-                    <legend>Cập nhật sản phẩm</legend>
+            <form action="" method="post" enctype="multipart/form-data">
+                    <legend>Thêm mới sản phẩm</legend>
                     <div class="mb-3">
                         <label class="form-label">Tên sản phẩm</label>
-                        <input type="text" id="TextInput" class="form-control" placeholder="Tên sản phẩm">
+                        <input type="text" name="ten" class="form-control" placeholder="Tên sản phẩm">
                     </div>
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Hình ảnh</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label class="form-label">Mô tả sản phẩm</label>
+                        <input type="text" name="mo_ta" class="form-control" placeholder="Giá sản phẩm">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Giá sản phẩm</label>
-                        <input type="number" id="TextInput" class="form-control" placeholder="Giá sản phẩm">
+                        <input type="number" name="gia" class="form-control" placeholder="Số lượng sản phẩm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Hình ảnh</label>
+                        <input class="form-control" name="anh" type="file" id="formFile">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Số lượng sản phẩm</label>
-                        <input type="number" id="TextInput" class="form-control" placeholder="Số lượng sản phẩm">
+                        <input type="number" name="gia" class="form-control" placeholder="Số lượng sản phẩm">
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="submit" class="btn btn-primary">Danh sách</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
             </form>
     </div>
 </body>

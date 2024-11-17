@@ -10,28 +10,7 @@
 </head>
 
 <body>
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="img/slide_1_img (1).webp" class="container d-block w-75" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="" class="container d-block w-75" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="" class="container d-block w-75" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <div class="container text-center mt-5">
+    <div class="container  mt-5">
         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
             <div class="col container-fluid mb-3">
                 <div class="card" style="width: 17rem;">

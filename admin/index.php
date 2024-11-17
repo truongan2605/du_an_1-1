@@ -1,23 +1,32 @@
 <?php
-    include "header.php ";
-    // controller dùng để chọn phần nào trong các thư mục sẽ hiển thị trên trang index
-    if (isset($_GET['act'])) {
 
-        $act= $_GET['act'];
+require_once '../commons/env.php';
+require_once '../commons/function.php';
 
-        switch ($act) {
-            case 'listsp':
-                include 'sanpham/list.php';
-                break;
-            
-            default:
-                include "home.php";
-                break;
-        }
-    }else{
-        include "home.php";
+require_once './controller/adminSanPhamController.php';
+require_once './controller/adminDanhMucController.php';
+require_once './controller/adminDonHangController.php';
+require_once './controller/adminBinhLuanController.php';
 
-    }
+require_once './model/adminSanPham.php';
+require_once './model/adminDanhMuc.php';
+require_once './model/adminDonHang.php';
+require_once './model/adminBinhLuan.php';
 
-    include "footer.php";
+// Route
+$act = $_GET['act'] ?? '/';
+
+match($act){
+    '/'=>(new adminSanPhamController())->danhSachSanPham(),
+    'san-pham'=>(new adminSanPhamController())->danhSachSanPham(),
+    'form-them-san-pham'=>(new adminSanPhamController())->formThemSanPham(),
+    'them-san-pham'=>(new adminSanPhamController())->themSanPham(),
+    'form-sua-san-pham'=>(new adminSanPhamController())->formSuaSanPham(),
+    'sua-san-pham'=>(new adminSanPhamController())->suaSanPham(),
+
+    'don-hang'=>(new adminDonHangController())->danhSachDonHang(),
+    'binh-luan'=>(new adminBinhLuanController())->danhSachBinhLuan(),
+    'danh-muc'=>(new adminDanhMucController())->danhSachDanhMuc(),
+    
+}
 ?>

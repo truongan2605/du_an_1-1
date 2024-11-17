@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <div class="row align-items-start">
+        <!-- <div class="row align-items-start">
             <div class="d-flex row">
                 <div class="p flex-fill col-3">
                     <div class="col" id="logo">
@@ -33,30 +33,37 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <nav class="navbar navbar-expand-sm bg-body-tertiary">
+        </div> -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary mt-3">
+            <div class="container-md">
+                <a class="navbar-brand" href="#">ADMIN</a>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-sm" style="background-color: #adb5bd;">
             <div class="container-fluid">
                 <ul class="nav justify-content-center">
-                    <a class="navbar-brand" href="#">ADMIN</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                                <a class="nav-link active" aria-current="page" href="<?= BASE_URL_AMIN.'?act=danh-muc'?>">Quản lý danh mục sản phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="index.php?act=listsp">Quản lý sản phẩm </a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN . '?act=san-pham'?>">Quản lý sản phẩm </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Quản lý đơn hàng</a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN .'?act=don-hang'?>">Quản lý đơn hàng</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Quản lý bình luận</a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act=binh-luan'?>">Quản lý bình luận</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Thống kê</a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act='?>">Quản lý người dùng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act='?>">Thống kê</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act='?>">Quản lý nhân viên</a>
                             </li>
                         </ul>
                     </div>
@@ -66,6 +73,3 @@
     </div>
     </div>
 
-</body>
-
-</html>
