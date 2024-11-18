@@ -6,6 +6,6 @@ class adminDonHangController{
             $this->modelDonHang= new adminDonHang();
         }
         public function danhSachDonHang(){
-            require_once 'don_hang/listDonHang.php';
+            require_once './view/don_hang/listDonHang.php';
         }
 }

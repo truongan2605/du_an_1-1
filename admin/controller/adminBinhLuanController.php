@@ -6,7 +6,7 @@ class adminBinhLuanController{
             $this->modelBinhLuan= new adminBinhLuan();
         }
         public function danhSachBinhLuan(){
-            require_once 'binh_luan/listBinhLuan.php';
+            require_once './view/binh_luan/listBinhLuan.php';
         }
         
 }

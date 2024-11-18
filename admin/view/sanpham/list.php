@@ -32,7 +32,7 @@ include 'header.php';
                             <tbody class="table-group-divider">
                                 <?php foreach ($listSanPham as $key => $sanpham): ?>
                                     <tr>
-                                        <th><?php $key + 1 ?></th>
+                                        <th><?= $key + 1 ?></th>
                                         <td><?= $sanpham['ten'] ?></td>
                                         <td>
                                             <!-- <?= $sanpham['ten_danh_muc'] ?> -->

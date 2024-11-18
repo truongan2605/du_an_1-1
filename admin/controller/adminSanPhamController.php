@@ -7,10 +7,10 @@ class adminSanPhamController{
     }
     public function danhSachSanPham(){
         $listSanPham = $this->modelSanPham->getAllSanPham();
-        require_once 'sanpham/list.php';
+        require_once './view/sanpham/list.php';
     }
     public function formThemSanPham(){
-        require_once 'sanpham/add.php';
+        require_once './view/sanpham/add.php';
     }
     public function themSanPham(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -18,6 +18,7 @@ class adminSanPhamController{
             $mota = $_POST['mo_ta'];
             $gia = $_POST['gia'];
             $anh = $_POST['anh'];
+            $so_luong = $_POST['$so_luong'];
             $error = [];
             if(empty($ten)){
                 $error = "Tên sản phẩm không được để trống";
@@ -28,10 +29,13 @@ class adminSanPhamController{
             if(empty($anh)){
                 $error = "Ảnh sản phẩm không được để trống";
             }
+            if(empty($so_luong)){
+                $error = "Ảnh sản phẩm không được để trống";
+            }
         }
     }
     public function formSuaSanPham(){
-        require_once 'sanpham/update.php';
+        require_once './view/sanpham/update.php';
     }
     public function suaSanPham(){
         
