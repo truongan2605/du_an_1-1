@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -39,37 +39,26 @@
                 <a class="navbar-brand" href="#">ADMIN</a>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-sm" style="background-color: #adb5bd;">
-            <div class="container-fluid">
-                <ul class="nav justify-content-center">
+
+            <nav class="navbar navbar-expand-sm bg-danger-subtle">
+                <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav text-center">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="<?= BASE_URL_AMIN.'?act=danh-muc'?>">Quản lý danh mục sản phẩm</a>
+                                <a class="nav-link active" aria-current="page" href="<?= BASE_URL_AMIN . '?act=danh-muc' ?>">Quản lý danh mục sản phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<?= BASE_URL_AMIN . '?act=san-pham'?>">Quản lý sản phẩm </a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN . '?act=san-pham' ?>">Quản lý sản phẩm </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<?= BASE_URL_AMIN .'?act=don-hang'?>">Quản lý đơn hàng</a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN . '?act=don-hang' ?>">Quản lý đơn hàng</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act=binh-luan'?>">Quản lý bình luận</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act='?>">Quản lý người dùng</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act='?>">Thống kê</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="<?= BASE_URL_AMIN.'?act='?>">Quản lý nhân viên</a>
+                                <a class="nav-link active" href="<?= BASE_URL_AMIN . '?act=binh-luan' ?>">Quản lý bình luận</a>
                             </li>
                         </ul>
                     </div>
-            </div>
-            </ul>
+                </div>
         </nav>
     </div>
     </div>
-

@@ -8,6 +8,9 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+<div class="container w-75 mt-3">
+    <h3>Quản Lý Danh Mục</h3>
+</div>
 <section class="content">
     <div class="container-fluid w-75 mt-3">
         <div class="row">
@@ -22,7 +25,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Tên danh mục</label>
-                                <input type="text" class="form-control" name="ten_danh_muc" value="<?= $danhMuc['ten_danh_muc']?>" placeholder="Tên danh mục">
+                                <input type="text" class="form-control" name="ten_danh_muc"  placeholder="Tên danh mục">
                                 <?php if (isset($errors['ten_danh_muc'])) { ?>
                                     <p class="text-danger"><?= $errors['ten_danh_muc'] ?></p>
                                 <?php } ?>

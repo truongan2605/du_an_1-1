@@ -26,7 +26,7 @@ class adminDanhMucController
             }
             if (empty($errors)) {
                 $this->modelDanhMuc->insertDanhMuc($ten_danh_muc, $mo_ta);
-                header('Location:' . BASE_URL_AMIN, '?act=danh-muc');
+                header('Location:' . BASE_URL_AMIN. '?act=danh-muc');
                 exit();
             } else {
                 require_once './view/danhmuc/addDanhMuc.php';

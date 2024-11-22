@@ -21,32 +21,34 @@ include 'header.php';
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên sản phẩm</th>
-                                    <th>ID danh mục</th>
                                     <th>Mô tả</th>
                                     <th>Giá</th>
                                     <th>Hình ảnh</th>
                                     <th>Số lượng</th>
+                                    <th>Danh mục</th>
                                     <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                <?php foreach ($listSanPham as $key => $sanpham): ?>
+                                <?php foreach ($listSanPham as $key => $sanPham): ?>
                                     <tr>
                                         <th><?= $key + 1 ?></th>
-                                        <td><?= $sanpham['ten'] ?></td>
+                                        <td><?= $sanPham['ten_san_pham'] ?></td>
+                                        <td><?= $sanPham['mo_ta'] ?></td>
+                                        <td><?= $sanPham['gia_san_pham'] ?></td>
                                         <td>
-                                            <!-- <?= $sanpham['ten_danh_muc'] ?> -->
-                                        </td>
-                                        <td><?= $sanpham['mo_ta'] ?></td>
-                                        <td><?= $sanpham['gia'] ?></td>
-                                        <td>
-                                            <img src="<?= BASE_URL . $sanpham['anh'] ?>" alt="" width="100px"
+                                            <img src="<?= BASE_URL . $sanPham['hinh_anh'] ?>" alt="" width="100px"
                                                 onerror="this.onerror = null; this.src='https://product.hstatic.net/1000288298/product/dsc00077_771cff22357147ddb67832b9e9c24148_master.jpg'">
                                         </td>
-                                        <td><?= $sanpham['so_luong'] ?></td>
+                                        <td><?= $sanPham['so_luong'] ?></td>
                                         <td>
-                                            <a class="btn btn-warning" href="<?= BASE_URL_AMIN . '?act=form-sua-san-pham&id-san-pham' . $sanPham['id'] ?>" role="button">Sửa</a>
-                                            <a class="btn btn-danger" href="<?= BASE_URL_AMIN . '?act=xoa-san-pham&id-san-pham' . $sanPham['id']  ?>" role="button">Xóa</a>
+                                            <?= $sanPham['ten_danh_muc'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= BASE_URL_AMIN . '?act=form-sua-san-pham&id_san_pham=' . $sanPham['id'] ?>">
+                                                <button class="btn btn-warning">Sửa</button></a>
+                                            <a href="<?= BASE_URL_AMIN . '?act=xoa-san-pham&id_san_pham=' . $sanPham['id'] ?>" onclick="return confirm('Bạn có đồng ý xóa sản phẩm không')">
+                                                <button class="btn btn-danger">Xóa</button></a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

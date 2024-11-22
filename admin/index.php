@@ -27,14 +27,19 @@ match($act){
     'xoa-danh-muc'=>(new adminDanhMucController())->deleteDanhMuc(),
 
     'san-pham'=>(new adminSanPhamController())->danhSachSanPham(),
-    'form-them-san-pham'=>(new adminSanPhamController())->formThemSanPham(),
-    'them-san-pham'=>(new adminSanPhamController())->themSanPham(),
-    'form-sua-san-pham'=>(new adminSanPhamController())->formSuaSanPham(),
-    'sua-san-pham'=>(new adminSanPhamController())->suaSanPham(),
+    'form-them-san-pham'=>(new adminSanPhamController())->formAddSanPham(),
+    'them-san-pham'=>(new adminSanPhamController())->postAddSanPham(),
+    // 'form-sua-san-pham'=>(new adminSanPhamController())->formEditSanPham(),
+    // 'sua-san-pham'=>(new adminSanPhamController())->postEditSanPham(),
+    // 'xoa-san-pham'=>(new adminSanPhamController())->deleteSanPham(),
 
-    'don-hang'=>(new adminDonHangController())->danhSachDonHang(),
+
+    'don_hang'=>(new adminDonHangController())->danhSachDonHang(),
+
+
     'binh-luan'=>(new adminBinhLuanController())->danhSachBinhLuan(),
-    'danh-muc'=>(new adminDanhMucController())->danhSachDanhMuc(),
+    'xoa_binh_luan' => (new adminBinhLuanController())->delete_binh_luan($id),
+
     
 }
 ?>

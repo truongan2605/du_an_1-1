@@ -23,5 +23,20 @@ function connectDB() {
 }
 
 // Thêm file
+function uploadFile($file, $folderUpload){
+    $pathStorage = $folderUpload .time().$file['name'];
+    $from = $file['tmp_name'];
+    $to = PATH_ROOT .$pathStorage;
+    if(move_uploaded_file($from,$to)){
+        return $pathStorage;
+    }
+    return null;
+}
 // xóa file
+function deleteFile($file){
+    $pathDelete = PATH_ROOT . $file;
+    if(file_exists($pathDelete)){
+        unlink ($pathDelete);
+    }
+}
 // debug
