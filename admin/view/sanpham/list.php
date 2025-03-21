@@ -25,6 +25,7 @@ include 'header.php';
                                     <th>Giá</th>
                                     <th>Hình ảnh</th>
                                     <th>Số lượng</th>
+                                    <th>Trạng thái</th>
                                     <th>Danh mục</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -41,14 +42,15 @@ include 'header.php';
                                                 onerror="this.onerror = null; this.src='https://product.hstatic.net/1000288298/product/dsc00077_771cff22357147ddb67832b9e9c24148_master.jpg'">
                                         </td>
                                         <td><?= $sanPham['so_luong'] ?></td>
+                                        <td><?= $sanPham['trang_thai'] == 1 ? 'Còn bán':'Dừng bán' ?></td>
                                         <td>
                                             <?= $sanPham['ten_danh_muc'] ?>
                                         </td>
                                         <td>
                                             <a href="<?= BASE_URL_AMIN . '?act=form-sua-san-pham&id_san_pham=' . $sanPham['id'] ?>">
                                                 <button class="btn btn-warning">Sửa</button></a>
-                                            <a href="<?= BASE_URL_AMIN . '?act=xoa-san-pham&id_san_pham=' . $sanPham['id'] ?>" onclick="return confirm('Bạn có đồng ý xóa sản phẩm không')">
-                                                <button class="btn btn-danger">Xóa</button></a>
+                                            <!-- <a href="<?= BASE_URL_AMIN . '?act=xoa-san-pham&id_san_pham=' . $sanPham['id'] ?>" onclick="return confirm('Bạn có đồng ý xóa sản phẩm không')">
+                                                <button class="btn btn-danger">Xóa</button></a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

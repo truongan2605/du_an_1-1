@@ -40,3 +40,49 @@ function deleteFile($file){
     }
 }
 // debug
+
+function formatDate($date){
+    return date("d-m-Y", strtotime($date));
+}
+// Xóa session sau khi load trang
+function deleteSessionError(){
+    if(isset($_SESSION['flash'])){
+        // Hủy sesion sau khi đã tải trang
+        unset($_SESSION['flash']);
+        session_unset();
+        // session_destroy();
+    }
+}
+
+
+//uploads file album anh
+function uploadFileAlbum($file, $folderUpload, $key){
+    $pathStorage =$folderUpload.time() .$file['name'][$key];
+    $from=$file['tmp_name'][$key];
+    $to=PATH_ROOT .$pathStorage;
+    if(move_uploaded_file($from,$to)){
+        return $pathStorage;
+    }
+    return null;
+
+}
+
+function formatPrice($price){
+    return number_format($price, 0, ',', '.');
+}
+
+function checkLoginAdmin(){
+    if(!isset($_SESSION['user_admin'])){ // không có session thì redirect về trang login
+    //    require_once './views/login/form_login_admin.php';
+        header("Location:" . BASE_URL . '?act=login');
+        exit;
+    }
+}
+
+function checkLoginQuanLi(){
+    if(!isset($_SESSION['user_quanli'])){ // không có session thì redirect về trang login
+    //    require_once './views/login/form_login_admin.php';
+        header("Location:" . BASE_URL . '?act=login');
+        exit;
+    }
+}

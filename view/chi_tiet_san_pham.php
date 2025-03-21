@@ -1,236 +1,153 @@
-
 <?php
-    include_once 'header.php'
+include_once 'header.php';
+include_once 'model/sanPham.php';
+
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "<p>Sản phẩm không tồn tại.</p>";
+    exit();
+}
+
+$san_pham_id = $_GET['id'];
+$sanPhamModel = new SanPham();
+$sanPham = $sanPhamModel->getSanPhamById($san_pham_id);
+
+if (!$sanPham) {
+    echo "<p>Sản phẩm không tồn tại.</p>";
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_SESSION['user_client'])) {
+        echo "<p>Bạn cần đăng nhập để gửi bình luận.</p>";
+        exit();
+    } else {
+        $tai_khoan_id = $_SESSION['user_client']['id'];
+        $noi_dung = htmlspecialchars($_POST['noi_dung']);
+        $sanPhamModel->addBinhLuan($san_pham_id, $tai_khoan_id, $noi_dung);
+    }
+}
+
+$binhLuanList = $sanPhamModel->getBinhLuanBySanPhamId($san_pham_id);
+$sanPhamLienQuan = $sanPhamLienQuan ?? [];
+
+
+
 ?>
 
 <body>
     <div class="chi_tiet_san_pham_body">
         <div class="chi_tiet_san_pham_img">
-            <img src="./upload/acer.jpg" alt="">
-
+            <img src="<?= BASE_URL . $sanPham['hinh_anh'] ?>" alt="<?= htmlspecialchars($sanPham['ten_san_pham']) ?>">
         </div>
 
         <div class="chi_tiet_san_pham_block">
-            <p style="margin: 20px;">PC CHƠI GAME HIỆU SUẤT CAO RTX 3060 12GB - 12400F ( ALL NEW - Bảo hành 36 tháng) - còn 6 Slots Order 3 Hà Nội - HCM 3 slots</p>
+            <h2><?= htmlspecialchars($sanPham['ten_san_pham']) ?></h2>
 
-            <div class="chi_tiet_san_pham_block_2">
-                <div class="chi_tiet_san_pham_block_3">
-                    <form action="">
-
-                        <div class="chi_tiet_san_pham_gia">
-                            <span>Giá:</span>
-
-                            <div class="gia2" style="margin: 10px;">
-
-                                <p>10.000.00 VNĐ</p>
-                            </div>
-
-                            <div class="gia1" style="margin: 10px;">
-                                <p>12.000.000 VNĐ</p>
-                            </div>
-
-                        </div>
-
-                        <div class="chi_tiet_san_pham_so_luong">
-                            <label for="quantity">Số lượng:</label>
-                            <input type="number" id="quantity" name="quantity" min="1" value="1">
-                        </div>
-
-                        <div class="chi_tiet_san_pham_button">
-                            <div class="chi_tiet_san_pham_button_1">
-                                <button>Thêm vào giỏ hàng</button>
-
-                            </div>
-
-                            <div class="chi_tiet_san_pham_button_2">
-                                <button>Mua hàng</button>
-
-                            </div>
-
-                        </div>
-                    </form>
+            <div class="chi_tiet_san_pham_gia">
+                <div class="gia2">
+                    <?= number_format($sanPham['gia_khuyen_mai'], 0, ',', '.') ?> VND
                 </div>
-
-
-                <div class="chi_tiet_san_pham_chinh_sach">
-                    <table>
-                        <th>Chính sách khách hàng</th>
-                        <tr>
-                            <td><img src="./upload/box-solid.svg" alt="" style="height: 20px; width:20px;">Cam kết 100% chính hãng</td>
-                        </tr>
-                        <tr>
-                            <td><img src="./upload/phone-solid.svg" alt="" style="height: 20px; width:20px;">Hỗ trợ 24/7</td>
-                        </tr>
-                        <th>Thông tin thêm</th>
-                        <tr>
-                            <td><img src="./upload/shield-solid.svg" alt style="height: 20px; width:20px;">Hoàn tiền 111% nếu hàng giả</td>
-                        </tr>
-                        <tr>
-                            <td><img src="./upload/thumbs-up-regular.svg" alt style="height: 20px; width:20px;">Mở hộp kiểm tra nhận hàng</td>
-                        </tr>
-                        <tr>
-                            <td><img src="./upload/reply-solid.svg" alt style="height: 20px; width:20px;">Đổi trả trong 7 ngày</td>
-                        </tr>
-
-                    </table>
-
-                    <img src="./upload/images.jpg" alt="" style="height: 50px;width:250px">
-
+                <div class="gia1">
+                    <?= number_format($sanPham['gia_san_pham'], 0, ',', '.') ?> VND
                 </div>
+            </div>
+            <div class="chi_tiet_san_pham_so_luong_con" style="background-color: whitesmoke; padding: 5px; border-radius: 5px;">
+                <p><strong>Số lượng còn lại:</strong> <?= $sanPham['so_luong'] ?> sản phẩm</p>
+            </div>
+            <div class="chi_tiet_san_pham_mo_ta">
+                <p><strong>Mô tả sản phẩm:</strong></p>
+                <p><?= nl2br(htmlspecialchars($sanPham['mo_ta'])) ?></p>
 
+            </div>
+            <!-- <div class="chi_tiet_san_pham_so_luong">
+                <label for="quantity">Số lượng:</label>
+                <input type="hidden" name="san_pham_id" value="<?= $sanPham['id'] ?> ">
+                <input type="number" id="quantity" name="so_luong" min="1" value="1">
+            </div> -->
+
+            <div class="chi_tiet_san_pham_button">
+                <form action="<?= BASE_URL . '?act=them_gio_hang' ?>" method="POST">
+                    <!-- Truyền san_pham_id qua hidden input -->
+                    <input type="hidden" name="san_pham_id" value="<?= $sanPham['id'] ?>">
+                    <label for="quantity">Số lượng:</label>
+                    <input type="number" id="quantity" name="so_luong" min="1" value="1">
+                    <button type="submit" class="button_1">Thêm vào giỏ hàng</button>
+                </form>
             </div>
 
         </div>
 
+        <!-- Chính sách khách hàng -->
+        <div class="chi_tiet_san_pham_chinh_sach">
+            <h2>Chính sách khách hàng</h2>
+            <ul>
+                <li><img src="./upload/box-solid.svg" style="height: 20px;  width: 50px;" alt=""> Cam kết 100% chính hãng</li>
+                <li><img src="./upload/phone-solid.svg" style="height: 20px;  width: 20px;" alt=""> Hỗ trợ 24/7</li>
+                <li><img src="./upload/shield-solid.svg" style="height: 20px;  width: 20px;" alt=""> Hoàn tiền 111% nếu hàng giả</li>
+                <li><img src="./upload/thumbs-up-regular.svg" style="height: 20px;  width: 20px;" alt=""> Mở hộp kiểm tra nhận hàng</li>
+                <li><img src="./upload/reply-solid.svg" style="height: 20px;  width: 20px;" alt=""> Đổi trả trong 7 ngày</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <!-- Mô tả sản phẩm -->
+    <!-- bình luận  -->
+    <div class="binh_luan">
+        <?php if (isset($_SESSION['user_client'])): ?>
+            <div class="binh_luan_form">
+                <h3>Thêm bình luận</h3>
+                <form method="POST">
+                    <textarea name="noi_dung" placeholder="Nhập bình luận" required></textarea><br>
+                    <button type="submit">Gửi</button>
+                </form>
+            </div>
+        <?php else: ?>
+            <p>Bạn cần <a href="dang_nhap.php">đăng nhập</a> để thêm bình luận.</p>
+        <?php endif; ?>
+
+        <div class="binh_luan_list">
+            <h3>Bình luận</h3>
+            <?php foreach ($binhLuanList as $binhLuan): ?>
+                <div class="binh_luan_item">
+                    <small><?= $binhLuan['ngay_dang'] ?></small>
+                    <p><strong><?= htmlspecialchars($binhLuan['ten_tai_khoan']) ?>:</strong> <?= htmlspecialchars($binhLuan['noi_dung']) ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 
 
-    <div class="chi_tiet_san_pham_body">
-
-
-        <div class="chi_tiet_san_pham_mo_ta">
-            <h2 >Mô tả sản phảm</h2>
-            <div>
-                CPU Intel Core i5-10400F (2.9GHz turbo up to 4.3Ghz, 6 nhân 12 luồng, 12MB Cache, 65W) - Socket Intel LGA 1200
-                Mainboard MSI PRO H510M-B
-            </div>
-
-            <div class="chi_tiet_san_pham_binh_luan">
-                <form action="">
-                    <h2 style="margin-top: 50px;">Bình luận</h2>
-                    <input type="text" name="" id="" placeholder="        Bình luận vào đây">
-                    <button type="submit">Gửi</button>
-
-                </form>
-
-                <h3 style="margin-top: 30px;">Đánh giá sản phẩm: </h3>
-                <p>Đây là bình luận</p>
-            </div>
-
-
-            <h2 style="margin-top: 50px;">Sản phẩm liên quan</h2>
-
-            <div class="san_pham_lien_quan">
-                <!-- foreach ở đây -->
+    <!-- Sản phẩm liên quan -->
+    <div class="san_pham_lien_quan">
+        <?php if (!empty($sanPhamLienQuan)): ?>
+            <?php foreach ($sanPhamLienQuan as $sp): ?>
                 <div class="block_lien_quan">
-                    <form action="">
-                        <div class="sp_lien_quan">
-                            <img src="./upload/tuf.jpg" alt="">
-
-                            <div class="mo_ta_lien_quan">
-                                <p>
-                                    PC CHƠI GAME HIỆU SUẤT CAO RTX 3060 12GB - 12400F ( ALL NEW - Bảo hành 36 tháng) - còn 6 Slots Order 3 Hà Nội - HCM 3 slots</p>
-
-                            </div>
-                            <div class="gia2" style="margin-left:20px">
-                                <p>10.000.000</p>
-                            </div>
-
-                            <div class="gia1" style="margin-left:20px">
-                                <p>12.000.000</p>
-                            </div>
-
-                            <div class="button_lien_quan">
-                                <button>Mua hàng</button>
-                            </div>
-                        </div>
-
-                    </form>
-
+                    <img src="<?= BASE_URL . $sp['hinh_anh'] ?>" alt="<?= htmlspecialchars($sp['ten_san_pham']) ?>">
+                    <div class="mo_ta_lien_quan">
+                        <p><?= htmlspecialchars($sp['ten_san_pham']) ?></p>
+                        <p class="gia2"><?= number_format($sp['gia_khuyen_mai'], 0, ',', '.') ?> VND</p>
+                    </div>
+                    <div class="button_lien_quan">
+                        <button>
+                            <a href="index.php?act=chi_tiet_san_pham&id=<?= $sp['id'] ?>">Xem chi tiết</a>
+                        </button>
+                    </div>
                 </div>
-
-                <div class="block_lien_quan">
-                    <form action="">
-                        <div class="sp_lien_quan">
-                            <img src="./upload/tuf.jpg" alt="">
-
-                            <div class="mo_ta_lien_quan">
-                                <p>
-                                    PC CHƠI GAME HIỆU SUẤT CAO RTX 3060 12GB - 12400F ( ALL NEW - Bảo hành 36 tháng) - còn 6 Slots Order 3 Hà Nội - HCM 3 slots</p>
-
-                            </div>
-                            <div class="gia2" style="margin-left:20px">
-                                <p>10.000.000</p>
-                            </div>
-
-                            <div class="gia1" style="margin-left:20px">
-                                <p>12.000.000</p>
-                            </div>
-
-                            <div class="button_lien_quan">
-                                <button>Mua hàng</button>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <div class="block_lien_quan">
-                    <form action="">
-                        <div class="sp_lien_quan">
-                            <img src="./upload/tuf.jpg" alt="">
-
-                            <div class="mo_ta_lien_quan">
-                                <p>
-                                    PC CHƠI GAME HIỆU SUẤT CAO RTX 3060 12GB - 12400F ( ALL NEW - Bảo hành 36 tháng) - còn 6 Slots Order 3 Hà Nội - HCM 3 slots</p>
-
-                            </div>
-                            <div class="gia2" style="margin-left:20px">
-                                <p>10.000.000</p>
-                            </div>
-
-                            <div class="gia1" style="margin-left:20px">
-                                <p>12.000.000</p>
-                            </div>
-
-                            <div class="button_lien_quan">
-                                <button>Mua hàng</button>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <div class="block_lien_quan">
-                    <form action="">
-                        <div class="sp_lien_quan">
-                            <img src="./upload/tuf.jpg" alt="">
-
-                            <div class="mo_ta_lien_quan">
-                                <p>
-                                    PC CHƠI GAME HIỆU SUẤT CAO RTX 3060 12GB - 12400F ( ALL NEW - Bảo hành 36 tháng) - còn 6 Slots Order 3 Hà Nội - HCM 3 slots</p>
-
-                            </div>
-                            <div class="gia2" style="margin-left:20px">
-                                <p>10.000.000</p>
-                            </div>
-
-                            <div class="gia1" style="margin-left:20px">
-                                <p>12.000.000</p>
-                            </div>
-
-                            <div class="button_lien_quan">
-                                <button>Mua hàng</button>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Không có sản phẩm liên quan nào.</p>
+        <?php endif; ?>
     </div>
 
 </body>
 
 
 <?php
-    include_once 'footer.php'
+include_once 'footer.php'
 ?>
-

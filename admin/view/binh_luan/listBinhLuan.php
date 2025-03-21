@@ -8,11 +8,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="<?= BASE_URL_AMIN . '?act=form-them-danh-muc' ?>">
-                            <button class="btn btn-success">Bình Luận</button>
-                        </a>
-                    </div>
+                    
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped ">
                             <thead>
@@ -29,12 +25,12 @@
                             <?php
                     foreach ($listbinhluan as $binhluan) :?>
                         <tr>
-                        <td><input type="checkbox" name="" id="" /></td>
+                        <td></td>
                          <td> <?= $binhluan['id'] ?> </td>
-                          <td> <?= $binhluan['id_nguoi_dung'] ?> </td>
+                          <td> <?= $binhluan['tai_khoan_id'] ?> </td>
 
                            <td> <?= $binhluan['noi_dung'] ?> </td>
-                           <td> <?= $binhluan['ngay_binh_luan'] ?> </td>
+                           <td> <?= $binhluan['ngay_dang'] ?> </td>
                 
                 <td>
                 
@@ -47,8 +43,7 @@
                             </tbody>
                         </table>
                         <div>
-                <input class="mr20" type="button" value="CHỌN TẤT CẢ" />
-                <input class="mr20" type="button" value="BỎ CHỌN TẤT CẢ" />
+            
             </div>
                     </div>
                 </div>

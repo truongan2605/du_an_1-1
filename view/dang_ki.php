@@ -1,12 +1,12 @@
 <?php
-include_once 'header.php'
+include_once 'header.php';
 ?>
 
 <style>
     .dang_ki_body {
         width: 55%;
-        /* height: 110%; */
         height: 600px;
+        /* height: 600px; */
         background-color: whitesmoke;
         margin-left: 300px;
         margin-top: 40px;
@@ -89,62 +89,89 @@ include_once 'header.php'
 </style>
 
 <body>
-    <div class="dang_ki_body">
+<div class="dang_ki_body">
         <div class="thanh1">
             <div class="block1">
-                <a href="">
-                    <h2>Đăng nhập</h2>
+                <a href="<?= BASE_URL . '?act=dang_ki' ?>">
+                    <h2>Đăng kí</h2>
                 </a>
             </div>
 
             <div class="block2">
-                <a href="">
-                    <h2>Đăng kí</h2>
+                <a href="<?= BASE_URL . '?act=login' ?>">
+                    <h2>Đăng nhập</h2>
                 </a>
-
             </div>
-
         </div>
-
         <div class="block3">
-            <form action="">
-                <div class="dang_ki_ten">
-                    <input type="text" name="" id="" placeholder="     Nhập họ và tên của bạn">
-                </div>
+            <?php if (isset($_SESSION['error']['general'])) { ?>
+                <p style="color: red; text-align: center;"><?= $_SESSION['error']['general'] ?></p>
+                <?php unset($_SESSION['error']['general']); // Xóa thông báo lỗi sau khi hiển thị 
+                ?>
+            <?php } ?>
+            <div class="block3">
+                <form action="<?= BASE_URL . '?act=register' ?>" method="POST">
+                    <div class="dang_ki_ten">
+                        <input type="text" name="ten" placeholder="Nhập họ và tên của bạn">
+                        <?php if (isset($_SESSION['error']['ten'])) { ?>
+                            <p style="color: red;"><?= $_SESSION['error']['ten'] ?></p>
+                            <?php unset($_SESSION['error']['ten']); // Xóa thông báo lỗi sau khi hiển thị 
+                            ?>
+                        <?php } ?>
+                    </div>
 
-                <div class="dang_ki_gioi_tinh">
-                    <input type="radio" name="gioi_tinh" id="gioi_tinh_nam" value="nam">
-                    <label for="gioi_tinh_nam">Nam</label>
+                    <div class="dang_ki_gioi_tinh">
+                        <label>
+                            <input type="radio" name="gender" value="Nam"> Nam
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="Nữ"> Nữ
+                        </label>
+                        <?php if (isset($_SESSION['error']['gender'])) { ?>
+                            <p style="color: red;"><?= $_SESSION['error']['gender'] ?></p>
+                            <?php unset($_SESSION['error']['gender']); // Xóa thông báo lỗi sau khi hiển thị 
+                            ?>
+                        <?php } ?>
+                    </div>
 
-                    <input type="radio" name="gioi_tinh" id="gioi_tinh_nu" value="nu">
-                    <label for="gioi_tinh_nu">Nữ</label>
-                </div>
+                    <div class="dang_ki_ngay">
+                        <label for="" style="margin: 25px;">Ngày sinh:</label>
+                        <input type="date" name="ngay_sinh">
+                        <?php if (isset($_SESSION['error']['ngay_sinh'])) { ?>
+                            <p style="color: red;"><?= $_SESSION['error']['ngay_sinh'] ?></p>
+                            <?php unset($_SESSION['error']['ngay_sinh']); // Xóa thông báo lỗi sau khi hiển thị 
+                            ?>
+                        <?php } ?>
+                    </div>
 
-                <div class="dang_ki_ngay">
-                    <input type="date" name="" id="">
-                </div>
+                    <div class="dang_ki_email">
+                        <input type="email" name="email" placeholder="Nhập email của bạn">
+                        <?php if (isset($_SESSION['error']['email'])) { ?>
+                            <p style="color: red;"><?= $_SESSION['error']['email'] ?></p>
+                            <?php unset($_SESSION['error']['email']); // Xóa thông báo lỗi sau khi hiển thị 
+                            ?>
+                        <?php } ?>
+                    </div>
 
-                <div class="dang_ki_email">
-                    <input type="email" name="" id="" placeholder="     Nhập email của bạn">
-                </div>
+                    <div class="dang_ki_mk">
+                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn">
+                        <?php if (isset($_SESSION['error']['password'])) { ?>
+                            <p style="color: red;"><?= $_SESSION['error']['password'] ?></p>
+                            <?php unset($_SESSION['error']['password']); // Xóa thông báo lỗi sau khi hiển thị 
+                            ?>
+                        <?php } ?>
+                    </div>
 
-                <div class="dang_ki_mk">
-                    <input type="password" name="" id="" placeholder="     Nhập mật khẩu của bạn">
-                </div>
-
-                <div class="dang_ki_button">
-                    <button>Đăng kí</button>
-                </div>
-
-            </form>
+                    <div class="dang_ki_button">
+                        <button type="submit">Đăng kí</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-
-    </div>
 </body>
 
 
 <?php
-include_once 'footer.php'
+// include_once 'footer.php';
 
 ?>

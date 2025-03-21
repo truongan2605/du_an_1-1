@@ -138,7 +138,7 @@ article img {
 
 .san_pham {
     text-align: center;
-    height: 500px;
+    height: 100%;
     width: 90%;
     background-color: #c40000;
     margin-left: 70px;
@@ -153,7 +153,7 @@ article img {
 
 .san_pham_noi_bat {
     text-align: center;
-    height: 500px;
+    height: 100%;
     width: 90%;
     /* background-color: white; */
     /* background-color: rgb(233, 233, 233); */
@@ -470,6 +470,7 @@ body {
     border-radius: 5px;
     width: 20%;
     margin-left: 50px;
+    height: 100%;
 }
 
 .mo_ta_lien_quan {
@@ -484,4 +485,11 @@ body {
     margin-top: 20px;
     background-color: red;
     color: white;
+}
+
+
+/* ------------------------------------------------------------------------------------------------ */
+
+.danh_muc_body{
+    margin-top: 50px;
 }
